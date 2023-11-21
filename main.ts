@@ -50,14 +50,24 @@ function Seite4StopandGo () {
 }
 function Seite8Arena () {
     Calli2bot.i2cReadINPUTS()
-    if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp2)) {
+    if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp1)) {
         Calli2bot.setMotoren2(-50, 50)
-        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
-    } else if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp1)) {
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p05))
+    } else if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp2)) {
         Calli2bot.setMotoren2(50, -50)
-        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p05))
     } else {
         Calli2bot.setMotoren2(50, 50)
+    }
+}
+function Seite9Linienfolger () {
+    Calli2bot.i2cReadINPUTS()
+    if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp0)) {
+        Calli2bot.setMotoren2(100, 100)
+    } else if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp1)) {
+        Calli2bot.setMotoren2(0, 50)
+    } else {
+        Calli2bot.setMotoren2(50, 0)
     }
 }
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
@@ -75,7 +85,7 @@ function Seite2Motor () {
     Calli2bot.setMotoren2(0, 0)
 }
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    for (let index = 0; index < 1000; index++) {
+    while (true) {
         Seite8Arena()
     }
     Calli2bot.i2cRESET_OUTPUTS()
@@ -91,7 +101,7 @@ function Seite4LautMax () {
 function Seite6Blinken3links () {
     for (let index = 0; index < 6; index++) {
         Calli2bot.setLed1(calli2bot.eLed.redl, true, true)
-        basic.pause(500)
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p05))
     }
 }
 function Seite7Ultraschall () {
