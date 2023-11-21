@@ -50,12 +50,12 @@ function Seite4StopandGo () {
 }
 function Seite8Arena () {
     Calli2bot.i2cReadINPUTS()
-    if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp1)) {
+    if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp2)) {
         Calli2bot.setMotoren2(-50, 50)
-        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p05))
-    } else if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp2)) {
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
+    } else if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp1)) {
         Calli2bot.setMotoren2(50, -50)
-        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p05))
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
     } else {
         Calli2bot.setMotoren2(50, 50)
     }
@@ -71,11 +71,10 @@ function Seite9Linienfolger () {
     }
 }
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    for (let index = 0; index < 4; index++) {
-        Seite5fahren50cm()
-        Seite6Blinken3links()
-        Seite5drehen()
+    while (true) {
+        Seite9Linienfolger()
     }
+    Calli2bot.i2cRESET_OUTPUTS()
 })
 function Seite2Motor () {
     Calli2bot.setMotoren2(100, 100)
@@ -122,6 +121,3 @@ let Calli2bot: calli2bot.Calli2bot = null
 Calli2bot = calli2bot.beimStart(calli2bot.calli2bot_eADDR(calli2bot.eADDR.CB2_x22))
 lcd16x2rgb.initLCD(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E))
 lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 3, Calli2bot.i2cReadFW_VERSION(calli2bot.eVersion.Typ))
-basic.forever(function () {
-	
-})
