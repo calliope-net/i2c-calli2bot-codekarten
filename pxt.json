@@ -1,0 +1,29 @@
+{
+    "name": "i2c-calli2bot-codekarten",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "calli2bot": "github:calliope-net/calli2bot#v1.0.2",
+        "lcd-16x2": "github:calliope-net/lcd-16x2#v2.0.5"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v4.0.29",
+        "tag": "v4.0.29",
+        "commits": "https://github.com/microsoft/pxt-calliope/commits/5a1ba75dc9f06c3fbddf4f40fc154cdd4dc826f1",
+        "target": "4.0.29",
+        "pxt": "7.0.18",
+        "targetId": "calliopemini"
+    },
+    "supportedTargets": [
+        "calliopemini"
+    ],
+    "preferredEditor": "blocksprj"
+}
