@@ -22,6 +22,20 @@ function Seite3LED () {
     basic.pause(100)
     Calli2bot.setRgbLed3(0x000000, false, true, false, false, false)
 }
+function Seite6blinken3mal () {
+    for (let index = 0; index < 6; index++) {
+        Calli2bot.setLed1(calli2bot.eLed.redl, true, true)
+        basic.pause(500)
+    }
+    for (let index = 0; index < 6; index++) {
+        Calli2bot.setLed1(calli2bot.eLed.redr, true, true)
+        basic.pause(500)
+    }
+    for (let index = 0; index < 6; index++) {
+        Calli2bot.setLed1(calli2bot.eLed.redb, true, true)
+        basic.pause(500)
+    }
+}
 function Seite4StopandGo () {
     laut = input.soundLevel()
     if (laut < 100) {
@@ -37,6 +51,7 @@ function Seite4StopandGo () {
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     for (let index = 0; index < 4; index++) {
         Seite5fahren50cm()
+        Seite6Blinken3links()
         Seite5drehen()
     }
 })
@@ -47,12 +62,21 @@ function Seite2Motor () {
     calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
     Calli2bot.setMotoren2(0, 0)
 }
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
+    Seite6blinken3mal()
+})
 function Seite4LautMax () {
     laut = input.soundLevel()
     lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 4, laut, lcd16x2rgb.eAlign.right)
     if (laut > lautmax) {
         lautmax = laut
         lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 5, 9, lautmax, lcd16x2rgb.eAlign.right)
+    }
+}
+function Seite6Blinken3links () {
+    for (let index = 0; index < 6; index++) {
+        Calli2bot.setLed1(calli2bot.eLed.redl, true, true)
+        basic.pause(500)
     }
 }
 let lautmax = 0
