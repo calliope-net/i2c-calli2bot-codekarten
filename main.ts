@@ -48,6 +48,18 @@ function Seite4StopandGo () {
         Calli2bot.setMotoren2(0, 0)
     }
 }
+function Seite8Arena () {
+    Calli2bot.i2cReadINPUTS()
+    if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp2)) {
+        Calli2bot.setMotoren2(-50, 50)
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
+    } else if (Calli2bot.bitINPUTS(calli2bot.eINPUTS.sp1)) {
+        Calli2bot.setMotoren2(50, -50)
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
+    } else {
+        Calli2bot.setMotoren2(50, 50)
+    }
+}
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     for (let index = 0; index < 4; index++) {
         Seite5fahren50cm()
@@ -64,7 +76,7 @@ function Seite2Motor () {
 }
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     for (let index = 0; index < 1000; index++) {
-        Seite7Ultraschall()
+        Seite8Arena()
     }
     Calli2bot.i2cRESET_OUTPUTS()
 })
