@@ -63,7 +63,10 @@ function Seite2Motor () {
     Calli2bot.setMotoren2(0, 0)
 }
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    Seite6blinken3mal()
+    for (let index = 0; index < 1000; index++) {
+        Seite7Ultraschall()
+    }
+    Calli2bot.i2cRESET_OUTPUTS()
 })
 function Seite4LautMax () {
     laut = input.soundLevel()
@@ -79,12 +82,24 @@ function Seite6Blinken3links () {
         basic.pause(500)
     }
 }
+function Seite7Ultraschall () {
+    Calli2bot.i2cReadINPUT_US()
+    lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 4, 15, Calli2bot.getINPUT_US())
+    if (Calli2bot.bitINPUT_US(calli2bot.eVergleich.gt, 15)) {
+        Calli2bot.setMotoren2(80, 80)
+    } else {
+        Calli2bot.setMotoren2(0, 0)
+        Calli2bot.setMotoren2(100, -100)
+        calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p1))
+    }
+}
 let lautmax = 0
 let Motoran = false
 let laut = 0
 let Calli2bot: calli2bot.Calli2bot = null
 Calli2bot = calli2bot.beimStart(calli2bot.calli2bot_eADDR(calli2bot.eADDR.CB2_x22))
 lcd16x2rgb.initLCD(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E))
+lcd16x2rgb.writeText(lcd16x2rgb.lcd16x2_eADDR(lcd16x2rgb.eADDR_LCD.LCD_16x2_x3E), 0, 0, 3, Calli2bot.i2cReadFW_VERSION(calli2bot.eVersion.Typ))
 basic.forever(function () {
 	
 })
